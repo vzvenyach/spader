@@ -3,8 +3,8 @@
 var test = require("tap").test;
 var Spader = require('../spader');
 
-var goodCitation = "600 F.3d 642"
-var badCitation = "600 F.3d 641"
+var goodCitation = {"vol":"600","reporter":"F.3d","page":"642"}
+var badCitation = {"vol":"600","reporter":"F.3d","page":"641"}
 
 test("Check Citation Tests", function (t) {
   Spader.checkCaseCitation(goodCitation, function (res) {

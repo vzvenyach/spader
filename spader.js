@@ -10,8 +10,8 @@ module.exports = {
   // Checks to see whether a case citation is valid
   // TODO: Figure out how to get this to return the value instead of calling it back...
   checkCaseCitation: function(citation, callback) {
-    permaCite = citation.replace(/ /g,"/")
-    getCase(permaCite, function (res) {
+    cite = [citation.vol, citation.reporter, citation.page].join("/")
+    getCase(cite, function (res) {
       callback(res)
     })
   }
