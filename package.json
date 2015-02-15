@@ -1,0 +1,18 @@
+{
+  "name": "Spader",
+  "version": "0.0.1",
+  "description": "My writing style, tested...",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "request":"*"
+  },
+  "devDependencies": {
+    "tap": "*"
+  },
+  "scripts": {
+    "test": "tap ./test"
+  }
+}

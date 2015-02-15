@@ -1,0 +1,1 @@
+var Spader = require('./spader')
