@@ -1,13 +1,23 @@
 var Spader = require('./spader');
 var Citation = require('citation');
+var fs = require('fs');
+var argv = require('minimist')(process.argv.slice(2));
 
-var stringToCheck = "It is emphatically the province and duty of the judicial department to say what the law is.  Marbury v. Madison, 5 U.S. 137 (1803).  But no one should have two spaces..."
+stream = fs.readFileSync(argv.f, 'utf-8')
 
-cite = Citation.find(stringToCheck).citations[0].reporter;
-console.log(Spader.replaceTwoSpacesAfterPeriod(stringToCheck))
+console.log("Checking Citations...")
+cites = Citation.find(stream).citations
+errorcount = 0
 
-Spader.checkCaseCitation(cite, function (res) {
-	if (!res) {
-		console.log("Citation Error: " + cite)	
-	} 
+cites.forEach(function (elem, idx, array) {
+  if (elem.type == "reporter"){
+    Spader.checkCaseCitation(elem.reporter, function (res) {
+      if (!res) {
+      	errorcount++;
+        console.log("Citation Error #" + errorcount + ": " + elem.reporter.id)
+      } 
+    })
+  }
 })
+
+console.log(Spader.replaceTwoSpacesAfterPeriod(stream))

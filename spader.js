@@ -19,7 +19,7 @@ module.exports = {
 
 function getCase (cite, callback) {
   request.get('https://permafrast.herokuapp.com/' + cite +'.json', function (error, response, body) {
-    if (response.statusCode != 500) {
+    if (response.statusCode == 200) {
       callback(true);
     }
     else {

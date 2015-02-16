@@ -8,12 +8,14 @@
   },
   "dependencies": {
     "request":"*",
-    "citation":"*"
+    "citation":"*",
+    "minimist": "*"
   },
   "devDependencies": {
     "tap": "*"
   },
   "scripts": {
+    "start": "node app -f string.md",
     "test": "tap ./test"
   }
 }
