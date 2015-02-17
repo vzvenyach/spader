@@ -3,21 +3,19 @@ var Citation = require('citation');
 var fs = require('fs');
 var argv = require('minimist')(process.argv.slice(2));
 
-stream = fs.readFileSync(argv.f, 'utf-8')
 
-console.log("Checking Citations...")
-cites = Citation.find(stream).citations
-errorcount = 0
+function start(callback) {
+  fs.readFile(argv.f, 'utf-8', function (err, data) {
+    callback(data)  
+  })
+}
 
-cites.forEach(function (elem, idx, array) {
-  if (elem.type == "reporter"){
-    Spader.checkCaseCitation(elem.reporter, function (res) {
-      if (!res) {
-      	errorcount++;
-        console.log("Citation Error #" + errorcount + ": " + elem.reporter.id)
-      } 
-    })
-  }
+function getCitations(stream, callback) {
+  cites = Citation.find(stream).citations
+  callback(cites)
+}
+
+var goodCitation = {"vol":"600","reporter":"F.3d","page":"642"}
+Spader.checkQuoteWithinCaseCitation(goodCitation, " unmentioned by the Commission", function (res) {
+  console.log(res)
 })
-
-console.log(Spader.replaceTwoSpacesAfterPeriod(stream))

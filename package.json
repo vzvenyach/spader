@@ -15,7 +15,7 @@
     "tap": "*"
   },
   "scripts": {
-    "start": "node app -f string.md",
+    "start": "node app -f test/string.md",
     "test": "tap ./test"
   }
 }

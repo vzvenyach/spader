@@ -12,3 +12,11 @@ test("Check Citation Tests", function (t) {
 		t.end()
   })
 })
+
+
+test("Check Quotation Citation Tests", function (t) {
+  Spader.checkQuoteWithinCaseCitation(goodCitation, " unmentioned by the Commission", function (res) {
+  	t.ok(res, "This should be good!")
+		t.end()
+  })
+})
